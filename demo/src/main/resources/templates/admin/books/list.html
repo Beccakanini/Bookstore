@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Books</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="container">
+        <a href="/admin/books" class="logo">Admin Panel</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/admin/books/new">Add New Book</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Manage Books</h1>
+    <a href="/admin/books/new" class="btn">Add New Book</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.title}">Title</td>
+            <td th:text="${book.author}">Author</td>
+            <td th:text="${book.description}">Description</td>
+            <td th:text="${book.price}">Price</td>
+            <td>
+                <a th:href="@{'/admin/books/edit/' + ${book.id}}" class="btn">Edit</a>
+                <a th:href="@{'/admin/books/delete/' + ${book.id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?');">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

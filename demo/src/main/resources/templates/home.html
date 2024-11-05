@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Online Bookstore</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>Welcome to the Online Bookstore</h1>
+<div>
+    <form action="/books/search" method="get">
+        <input type="text" name="keyword" placeholder="Search for books...">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
+    <h2>Available Books</h2>
+    <ul>
+        <li th:each="book : ${books}">
+            <a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.title}">Book Title</a>
+            by <span th:text="${book.author}">Author</span> -
+            $<span th:text="${book.price}">Price</span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Bookstore</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script th:src="@{/js/scripts.js}" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="container">
+        <a href="/" class="logo">Bookstore</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/books">Books</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to the Online Bookstore</h1>
+        <p>Your one-stop shop for a vast collection of books.</p>
+        <a href="/books" class="btn">Browse Books</a>
+    </div>
+</section>
+
+<!-- Featured Books Section -->
+<section class="featured-books">
+    <div class="container">
+        <h2>Featured Books</h2>
+        <div class="books-grid">
+            <div th:each="book : ${featuredBooks}" class="book-card">
+                <img th:src="@{'/images/' + ${book.imageFilename}}" alt="Book Title">
+                <h3 th:text="${book.title}">Book Title</h3>
+                <p th:text="${book.author}">Author Name</p>
+                <p th:text="${#numbers.formatDecimal(book.price, 1, 'POINT', 2, 'FRACTION')}">$0.00</p>
+                <a th:href="@{'/books/' + ${book.id}}" class="btn">View Details</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>
+            At our online bookstore, we strive to provide a diverse selection of books to cater to all readers.
+            Whether you're looking for the latest bestsellers, classic literature, or niche genres, we've got you covered.
+        </p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 Online Bookstore. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#"><img th:src="@{/images/facebook.png}" alt="Facebook"></a>
+            <a href="#"><img th:src="@{/images/twitter.png}" alt="Twitter"></a>
+            <a href="#"><img th:src="@{/images/instagram.png}" alt="Instagram"></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
